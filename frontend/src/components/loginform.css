@@ -1,0 +1,198 @@
+/*.Main{
+    position: absolute;
+    min-height: 100vh;
+    background-color:#0C2340;
+    background-image: url("/src/images/mec1.png");
+    background-repeat: no-repeat;
+    background-position:center;
+    background-size: cover;
+}
+.hero-cont{
+    display: flex;
+    justify-content: space-around;
+    gap: 30px;
+    margin: 120px 80px;
+    align-items: center;
+    height: 100%;
+}
+.hero-left{
+    flex: 1;
+    text-align: left;
+    margin-left: 50px;
+}
+.hero-right{
+    flex: 1;
+
+    
+}
+.hero-left h1{
+    font-family: poppins;
+    font-size: 50px;
+    color:#ffff;
+}
+.hero-left h3{
+    font-family: poppins;
+    font-size: 20px;
+    color:#ffffff;
+}
+.hero-right img{
+    width: 100%;
+    border-radius: 20px;
+}
+.hero-left a{
+    background:#AE9142;
+    border: none;
+    padding: 15px 40px;
+    margin-right: 20px;
+    color: white;
+    border-radius: 20px;
+    text-decoration: none;
+
+}
+.hero-left a:hover{
+    background:none;
+    border: 2px solid #ffffff;
+    color: #ffffff;
+}
+*/
+
+/**{
+    margin:0;
+    box-sizing: border-box;
+   
+}
+@font-face {
+    font-family: "Lusitana-Bold";
+    src: url("D:\ktupoints\src\fonts\Lusitana\Lusitana-Bold.ttf");
+    
+}
+@font-face {
+    font-family: "Lusitana-reg";
+    src: url("D:\ktupoints\src\fonts\Lusitana\Lusitana-Regular.ttf");
+}
+
+.page{
+    background-image: url("D:\ktupoints\public\hercules-hall-surrounded-by-greenery-sunlight-daytime-munich-germany.jpg");
+    background-repeat: no-repeat;
+    background-position:center;
+    background-size: cover; 
+    position: relative;
+    height:100vh;
+    width:100%;
+    display:flex;
+    justify-content:center ;
+    align-items: centre;
+}
+
+.main{
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vvh;
+    background-color: rgba(0, 0, 0, 0.756);    
+}
+
+
+.cover{
+    margin-left: 15vb;
+    margin-top: 10em;
+    text-align: center;
+    font-size:150%;
+    font-family: "Lusitana-Bold";
+    color: aliceblue ;
+    background-color:rgba(178, 176, 173, 0);
+    width: 55em;
+    height: 100vh;
+    position:relative;
+    border-radius: 5em;
+   
+}
+.cover h2{
+    font-family: 'Lusitana', serif;
+    font-size: 90%;
+}
+
+.Student{
+    margin-top: 3em;
+    font-size:  20px;
+    align-items: flex-start;   
+    border: 3px solid rgb(2, 121, 2);
+    border-radius: 20px;
+    margin-left: 18em;
+    padding: 5px;
+   
+}
+.Container{
+  display:flex;
+}
+.Faculty{
+    font-size:  20px;
+    margin-top: 3em;
+    align-items: flex-start;   
+    border: 3px solid rgb(2, 121, 2);
+    border-radius: 20px;
+    margin-left: 7em;
+    padding: 5px;
+   
+}*/
+
+
+.Main{
+    position: absolute;
+    min-height: 100vh;
+    background-color:#0C2340;
+    background-image: url("/src/images/mec1.png");
+    background-repeat: no-repeat;
+    background-position:center;
+    background-size: cover;
+}
+.hero-cont{
+    display: flex;
+    justify-content: space-around;
+    gap: 30px;
+    margin: 120px 80px;
+    align-items: center;
+    height: 100%;
+}
+.hero-left{
+    flex: 1;
+    text-align: left;
+    margin-left: 50px;
+}
+.hero-right{
+    flex: 1;
+
+    
+}
+.hero-left h1{
+    font-family: poppins;
+    font-size: 50px;
+    color:#ffff;
+}
+.hero-left h3{
+    font-family: poppins;
+    font-size: 20px;
+    color:#ffffff;
+}
+.hero-right img{
+    width: 100%;
+    border-radius: 20px;
+}
+.hero-left a{
+    background:#AE9142;
+    border: none;
+    padding: 15px 40px;
+    margin-right: 20px;
+    color: white;
+    border-radius: 20px;
+    text-decoration: none;
+
+}
+.hero-left a:hover{
+    background:none;
+    border: 2px solid #ffffff;
+    color: #ffffff;
+}
