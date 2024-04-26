@@ -1,0 +1,51 @@
+.sidebar {
+  width: 300px;
+  /* background-color: #f0f0f0; */
+  background-color:#002244;
+  padding: 20px;
+  height: 100vh;
+}
+
+.profile-info {
+  margin-bottom: 20px;
+  
+}
+
+.sidebar-options button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  /* background-color: #05468c;
+  color: #fff; */
+  background-color:white;
+  color:#041E42;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size:large;
+  /* font-style:Sans-serif; */
+  
+}
+
+.sidebar-options button:hover {
+  background-color: #C8C8C8;
+}
+
+.imgBox {
+  margin-bottom: 20px;
+  margin-left: 31px;
+  margin-top: 50px;
+}
+
+.profile-info p{
+  font-size: large;
+  margin-bottom: 20px;
+  color:white;
+
+} 
+
+.imgBox img {
+width: 200px;
+border-radius: 50%;
+}

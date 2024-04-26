@@ -1,0 +1,95 @@
+/* manageexams.css */
+
+.manage-exams-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px;
+  height: 100vh;
+   /* background: linear-gradient(to bottom,#ffffff,#8f6b5c);     */
+    background-color:#dfdfdf  ; 
+   /* background-color: #111439; */
+   /* margin-top: 100px; */
+   padding-top: 150px;
+  
+  
+}
+
+.form-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.add-exam-btn,
+.submit-exam-btn {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color:  #05468c;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.add-exam-btn:hover,
+.submit-exam-btn:hover {
+  background-color: #0056b3;
+}
+
+/* manageexams.css */
+
+/* Style placeholders for input fields */
+.form-container input::placeholder {
+  color: #000000; /* Placeholder text color */
+  font-style: italic;
+  font-weight: bold;
+  font-size: medium;
+  padding: 3px;
+   /* Italicize placeholder text */
+}
+
+/* Style placeholders for date input */
+.form-container input[type="date"]::before {
+  content: "Select Start Date"; /* Custom placeholder text for date input */
+  color: #000000; /* Placeholder text color */
+  font-style: italic;
+  font-weight: bold; 
+  font-size: medium;
+  padding: 4px;/* Italicize placeholder text */
+}
+
+/* manageexams.css */
+
+/* Style the "Choose File" button */
+.form-container input[type="file"] {
+  color: transparent; /* Hide the default text color */
+  cursor: pointer; 
+  font-weight: bold;/* Show pointer cursor on hover */
+}
+
+/* Style the placeholder text for the "Choose File" button */
+.form-container input[type="file"]::before {
+  content: "Upload Timetable"; /* Custom placeholder text for the "Choose File" button */
+  color: #000000; /* Placeholder text color */
+  font-style: italic;
+  font-weight: bold;
+  font-size: medium;
+  padding: 3px;
+   /* Italicize placeholder text */
+}
+
+.form-container input[type="text"],
+.form-container input[type="date"],
+.form-container input[type="file"] {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px; /* Add margin between input fields */
+  border: 2px solid #000000; /* Add border for input fields */
+  border-radius: 5px; /* Add border radius for rounded corners */
+}
+
+.form-container input[type="file"] {
+  cursor: pointer; /* Change cursor to pointer for file input */
+}
+

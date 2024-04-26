@@ -1,0 +1,89 @@
+/* AdminDashboard.css */
+
+.admin-dashboard {
+  display: flex;
+
+}
+.main-content{
+  padding: 0;
+  margin-right: 0;
+}
+/* .sidebar {
+  width: 300px;
+  background-color: #f0f0f0;
+  padding: 20px;
+  height: 100vh;
+}
+
+.profile-info {
+  margin-bottom: 20px;
+  
+}
+
+.sidebar-options button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #05468c;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  
+}
+
+.sidebar-options button:hover {
+  background-color: #0056b3;
+}
+
+
+.main-content {
+  flex: 1;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  background: linear-gradient(to bottom, #965555, #444ab3); 
+  background-color:#111439;
+}
+
+.Buttons button {
+  padding: 15px 30px; 
+  font-size: 18px; 
+  margin: 0 10px;
+  background-color: #ffffff;
+  color: #111439;
+   
+}
+
+.Buttons button:hover{
+  background-color: #a4a7aa
+}
+.Buttons button:first-child {
+  margin-left: 0; 
+}
+
+.Buttons button:last-child {
+  margin-right: 0;
+}
+
+  .imgBox {
+    margin-bottom: 20px;
+    margin-left: 31px;
+    margin-top: 50px;
+  }
+
+
+.imgBox img {
+  width: 200px;
+  border-radius: 50%;
+}
+
+.profile-info p{
+  font-size: large;
+  margin-bottom: 20px;
+} */

@@ -1,0 +1,41 @@
+/* AdminDutyDetails.css */
+
+.admin-duty-details {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.admin-duty-details h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.admin-duty-details form {
+  display: grid;
+  gap: 10px;
+}
+
+.admin-duty-details label {
+  font-weight: bold;
+}
+
+.admin-duty-details input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.admin-duty-details button {
+  width: 100%;
+  padding: 10px;
+  background-color: #05468c;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.admin-duty-details button:hover {
+  background-color: #0056b3;
+}
