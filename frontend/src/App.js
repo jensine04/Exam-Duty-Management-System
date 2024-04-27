@@ -3,6 +3,7 @@ import Loginform from "./components/loginform.js"
 import AdminLogin from "./components/adminlogin.js";
 import FacultyLogin from "./components/facultylogin.js"
 import FacultyPage from "./components/facultypage.js"
+import Availability from "./components/availability.js"
 import { ChakraProvider } from '@chakra-ui/react'
 import AdminDashboard from "./components/admindashboard.js";
 //import ManageExams from "./components/manageexams.js";
@@ -37,6 +38,7 @@ function App() {
       <Route path="/adminlogin" element={<AdminLogin />} />
       <Route path="/facultylogin" element={<FacultyLogin/>}/>
       <Route path="/facultypage" element={<FacultyPage/>}/>
+      <Route path="/availability" element={<Availability/>}/>
       <Route path="/admindashboard" element={<AdminDashboard/>}/>
       {/* <Route path="/manageexams" element={<ManageExams/>}/> */}
       <Route path="/sidebar" element={<Sidebar/>}/>
