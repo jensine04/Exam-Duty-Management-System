@@ -36,6 +36,21 @@ app.post('/facultylogin',(req,res)=>{
     })
 })
 
+app.post('/adminlogin',(req,res)=>{
+    const sql ="SELECT * FROM admin WHERE username = ? AND password= ?";
+   
+    db.query(sql,[req.body.username , req.body.password],(err,data)=>{
+        if(err) return res.json("Error");
+        if (data.length>0){
+            return res.json('Login Successful');
+        }
+        else{
+            return res.json('Login Failed');
+        }
+        
+    })
+})
+
 app.listen(3001, () => {
     console.log("running server");
 });
