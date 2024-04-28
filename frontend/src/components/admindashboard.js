@@ -59,6 +59,8 @@ import React, { useState } from 'react';
 import Sidebar from './sidebar';
 import ExamDetails from './examDetails'; 
 import axios from 'axios';
+import {Link} from 'react-router-dom'
+
 import'./admindashboard.css'// Placeholder for View Exam Details page content
 
 const AdminDashboard = () => {
@@ -93,6 +95,9 @@ const AdminDashboard = () => {
     }
   };
 
+
+
+  
   return (
     <div className="admin-dashboard">
       <Sidebar adminInfo={adminInfo} onPageChange={handlePageChange} />
