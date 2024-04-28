@@ -1,16 +1,26 @@
+const jwt = require('jsonwebtoken');
+
 const express =require("express");
 const mysql= require('mysql2');
 const cors= require("cors");
+const cookieParser = require('cookie-parser');
 
 const app= express();
 
 app.use(express.json());
-app.use(cors());
+app.use(cors( {
+    origin: ["http://localhost:3000"],
+    methods: ["POST , GET"],
+    credentials: true,
+}
+));
+app.use(cookieParser());
+
 
 const db = mysql.createConnection({
     host: "localhost",
     user: 'root',
-    password: "password",
+    password: "123dubai",
     database: "edms",
 });
 db.connect((err) => {
@@ -21,16 +31,56 @@ db.connect((err) => {
     }
 });
 
+const verifyUser= (req,res,next) =>{
+    const token =req.cookies.token;
+    if(!token){
+        return res.json({Message: "Need token, provide."})
+    }
+    else {
+        jwt.verify(token,"our-jsonwebtoken-secret-key",(err,decoded) => {
+            if (err){
+                return res.json({Message: "Authentication error"})
+            }
+            else{
+                req.name = decoded.name;
+                req.department = decoded.department;
+                req.id = decoded.id;
+                next();
+            }
+        })
+    }
+}
+
+app.get('/facultypage',verifyUser,(req, res) => {
+    return res.json({Status: "Success",name: req.name, department: req.department, id:req.id})
+})
+
+app.get('/admindashboard',verifyUser,(req, res) => {
+    return res.json({Status: "Success",name: req.name, department: req.department, id:req.id})
+})
+
 app.post('/facultylogin',(req,res)=>{
     const sql ="SELECT * FROM teachers WHERE username = ? AND password= ?";
    
     db.query(sql,[req.body.username , req.body.password],(err,data)=>{
         if(err) return res.json("Error");
         if (data.length>0){
-            return res.json('Login Successful');
+            // const payload = {
+            //     id: data[0].teacher_id,
+            //     name: data[0].name,
+            //     department: data[0].department
+            // };
+            const name=data[0].name;
+            const department=data[0].department;
+            const id=data[0].teacher_id;
+            console.log(data);
+            const token = jwt.sign({name,department,id},"our-jsonwebtoken-secret-key",{expiresIn: '1d'});
+            res.cookie('token',token);
+            return res.json({Status: 'Success'});
+
         }
         else{
-            return res.json('Login Failed');
+            return res.json({Status: 'Failed'});
         }
         
     })
@@ -42,13 +92,23 @@ app.post('/adminlogin',(req,res)=>{
     db.query(sql,[req.body.username , req.body.password],(err,data)=>{
         if(err) return res.json("Error");
         if (data.length>0){
-            return res.json('Login Successful');
+            const name=data[0].name;
+            const department=data[0].department;
+            const id=data[0].admin_id;
+            const token = jwt.sign({name,department,id},"our-jsonwebtoken-secret-key",{expiresIn: '1d'});
+            res.cookie('token',token);
+            return res.json({Status: 'Success'});
         }
         else{
-            return res.json('Login Failed');
+            return res.json({Status: 'Failed'});
         }
         
     })
+})
+
+app.get('/logout',(req, res) => {
+    res.clearCookie('token');
+    return res.json({Status: "Success"})
 })
 
 app.listen(3001, () => {

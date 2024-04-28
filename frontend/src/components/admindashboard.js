@@ -58,6 +58,7 @@
 import React, { useState } from 'react';
 import Sidebar from './sidebar';
 import ExamDetails from './examDetails'; 
+import axios from 'axios';
 import'./admindashboard.css'// Placeholder for View Exam Details page content
 
 const AdminDashboard = () => {

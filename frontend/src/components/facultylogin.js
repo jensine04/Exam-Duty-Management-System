@@ -10,6 +10,8 @@ const FacultyLogin = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
+  axios.defaults.withCredentials = true;
+
   const [errors,setErrors]=useState({});
   const navigate=useNavigate();
 
@@ -19,9 +21,9 @@ const FacultyLogin = () => {
     if(errors.username === "" && errors.password === ""){
       axios.post('http://localhost:3001/facultylogin',{username,password})
     .then(res => {
-        if (res.data === 'Login Successful'){
+        if (res.data.Status === 'Success'){
           navigate('/facultypage');
-          console.log(res);}
+          console.log('1',res);}
         else{
            alert("Login Failed")
         }
