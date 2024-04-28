@@ -54,6 +54,9 @@ const verifyUser= (req,res,next) =>{
 app.get('/facultypage',verifyUser,(req, res) => {
     return res.json({Status: "Success",name: req.name, department: req.department, id:req.id})
 })
+app.get('/availability',verifyUser,(req, res) => {
+    return res.json({Status: "Success",name: req.name, department: req.department, id:req.id})
+})
 
 app.get('/admindashboard',verifyUser,(req, res) => {
     return res.json({Status: "Success",name: req.name, department: req.department, id:req.id})
