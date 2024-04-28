@@ -132,12 +132,10 @@ import React, { useState } from 'react';
 import './dutyDetails.css';
 
 const DutyDetails = () => {
-  const [dutyDetails, setDutyDetails] = useState([{ date: '', startTime: '', endTime: '', classroom: '', teacherAssigned: '' }]);
+  const [dutyDetails, setDutyDetails] = useState([{ date: '', startTime: '', endTime: '', classroom: '' }]);
 
   // Function to handle adding a new row for duty details
-  const handleAddRow = () => {
-    setDutyDetails([...dutyDetails, { date: '', startTime: '', endTime: '', classroom: '', teacherAssigned: '' }]);
-  };
+ 
 
   // Function to handle form input change
   const handleChange = (index, e) => {
@@ -152,7 +150,9 @@ const DutyDetails = () => {
   // Function to handle submitting duty details
   const handleSubmit = () => {
     // Logic to submit duty details to the server
+
     console.log('Submitting duty details:', dutyDetails);
+    setDutyDetails([{ date: '', startTime: '', endTime: '', classroom: '' }]);
   };
 
   return (
@@ -168,12 +168,11 @@ const DutyDetails = () => {
           <input type="time" name="endTime" value={detail.endTime} onChange={(e) => handleChange(index, e)} required />
           <label>Classroom:</label>
           <input type="text" name="classroom" value={detail.classroom} onChange={(e) => handleChange(index, e)} required />
-          <label>Teacher Assigned:</label>
-          <input type="text" name="teacherAssigned" value={detail.teacherAssigned} onChange={(e) => handleChange(index, e)} required />
+          
         
         </div>
       ))}
-      <button onClick={handleAddRow}>Add Row</button>
+     
       <button onClick={handleSubmit}>Submit</button>
     </div>
   );

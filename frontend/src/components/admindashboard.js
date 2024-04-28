@@ -58,6 +58,7 @@
 import React, { useState } from 'react';
 import Sidebar from './sidebar';
 import ExamDetails from './examDetails'; 
+import DutyDetails from './dutyDetails';
 import'./admindashboard.css'// Placeholder for View Exam Details page content
 
 const AdminDashboard = () => {
@@ -85,7 +86,7 @@ const AdminDashboard = () => {
         
         
       case 'dutyDetails':
-        return <utyDetails />; // Placeholder for View Duty Details page content
+        return <DutyDetails />; // Placeholder for View Duty Details page content
       // Add cases for other pages as needed
       default:
         return null;

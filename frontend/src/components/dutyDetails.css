@@ -2,7 +2,10 @@
 
 .admin-duty-details {
   max-width: 400px;
-  margin: 0 auto;
+ margin-left: 350px;
+  margin-top: 80px;
+  margin-bottom: 80px;
+  margin-right: 80px;
 }
 
 .admin-duty-details h2 {
@@ -28,6 +31,7 @@
 }
 
 .admin-duty-details button {
+  margin-top: 10px;
   width: 100%;
   padding: 10px;
   background-color: #05468c;
