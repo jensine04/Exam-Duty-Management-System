@@ -107,6 +107,9 @@ function Availability() {
    
           </tbody>
         </table>
+      <Button colorScheme="teal" _hover={{ bg: 'lightblue' }} ml={900} mt={50} size="lg">
+  Confirm
+</Button>
       </div>
       </section>
     </div>
