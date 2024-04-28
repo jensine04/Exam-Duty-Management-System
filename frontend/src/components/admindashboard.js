@@ -55,7 +55,7 @@
 
 
 // AdminDashboard.js
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Sidebar from './sidebar';
 import ExamDetails from './examDetails'; 
 import DutyDetails from './dutyDetails';
@@ -65,12 +65,23 @@ import {Link} from 'react-router-dom'
 import'./admindashboard.css'// Placeholder for View Exam Details page content
 
 const AdminDashboard = () => {
+
+  const [auth,setAuth] = useState(false)
+  // const [name,setName] = useState('')
+  // const [department,setDepartment] = useState('')
+  // const [id,setId] = useState('')
+
+  const [message,setMessage] = useState('')
+  axios.defaults.withCredentials=true;
+
+ 
+
   // Placeholder admin information
-  const adminInfo = {
-    name: 'Admin Name',
-    username: 'admin123',
-    email: 'admin@example.com'
-  };
+  const [adminInfo,setAdminInfo] = useState({
+    name: '',
+    department: '',
+    id: ''
+  });
 
   const [currentPage, setCurrentPage] = useState('examDetails'); // Default to View Exam Details page
 
@@ -78,7 +89,31 @@ const AdminDashboard = () => {
     console.log(page)
     setCurrentPage(page);
   };
+ useEffect(()=> {
+    axios.get('http://localhost:3001/admindashboard')
+    .then(res=> {
+      if (res.data.Status === 'Success'){
+        setAuth(true);
+        setAdminInfo({
+          name: res.data.name,
+          department: res.data.department,
+          id: res.data.id 
+      });
+      console.log(res.data);
+        // setAdminInfo.name(res.data.name);
+        // setAdminInfo.department(res.data.department);
+        // setAdminInfo.id(res.data.id);
+        //console.log(res.data);
+      }
+      else {
+        setAuth(false)
+        setMessage(res.data.Message);
+      }
+      }
+     )
+    }, [currentPage]);
 
+    
   const renderMainContent = () => {
     console.log(currentPage)
     switch (currentPage) {
@@ -101,10 +136,20 @@ const AdminDashboard = () => {
   
   return (
     <div className="admin-dashboard">
+      {
+        auth ?
+        <>
       <Sidebar adminInfo={adminInfo} onPageChange={handlePageChange} />
       <div className="main-content">
         {renderMainContent()}
       </div>
+      </>
+        :
+        <div> 
+        <h3>You are not logged in</h3>
+        <Link to='/' className='btn btn-primary'>Login</Link>
+      </div>
+      }
     </div>
   );
 };
