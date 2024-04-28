@@ -1,4 +1,4 @@
-/* AdminDutyDetails.css */
+
 
 .admin-duty-details {
   max-width: 400px;
@@ -11,7 +11,8 @@
 }
 
 .admin-duty-details form {
-  display: grid;
+  display: flex;
+  flex-direction: row;
   gap: 10px;
 }
 
@@ -38,4 +39,8 @@
 
 .admin-duty-details button:hover {
   background-color: #0056b3;
-}
+} 
+
+
+
+

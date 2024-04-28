@@ -13,7 +13,11 @@ function FacultyPage() {
     { id: 3, dateTime: 'May 3, 2024 - 9:00 AM', classroom: 'Room C', available: false },
   ]);
 */}
-
+const navigate = useNavigate();
+const handleAvailabilityClick = () => {
+  
+  navigate('/availability'); 
+};
 
   return (
     <div className="faculty-page">
@@ -30,10 +34,10 @@ function FacultyPage() {
         </div>
         {/* Add more faculty information as needed */}
         
-      <Button colorScheme="blue" _hover={{ bg: 'lightblue' }} mt={50} size="lg">
+      <Button  colorScheme="blue" _hover={{ bg: 'lightblue' }} mt={50} size="lg" onClick={handleAvailabilityClick}>
   Availability
 </Button>
-<Button colorScheme="blue" _hover={{ bg: 'lightblue' }} mt={50} size="lg">
+<Button  colorScheme="blue" _hover={{ bg: 'lightblue' }} mt={50} size="lg">
   Logout
 </Button>
       </div>
