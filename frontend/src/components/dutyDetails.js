@@ -129,6 +129,8 @@ const DutyDetails = () => {
 export default DutyDetails;
 */
 import React, { useState } from 'react';
+
+import axios from 'axios';
 import './dutyDetails.css';
 
 const DutyDetails = () => {
