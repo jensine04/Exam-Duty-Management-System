@@ -10,6 +10,8 @@ const AdminLogin = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
+  axios.defaults.withCredentials = true;
+
   const [errors,setErrors]=useState({});
   const navigate=useNavigate();
 
@@ -19,7 +21,7 @@ const AdminLogin = () => {
     if(errors.username === "" && errors.password === ""){
       axios.post('http://localhost:3001/adminlogin',{username,password})
     .then(res => {
-      if (res.data === 'Login Successful'){
+      if (res.data.Status === 'Success'){
         navigate('/admindashboard');
         console.log(res);}
       else{
