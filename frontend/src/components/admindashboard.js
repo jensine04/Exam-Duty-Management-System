@@ -58,6 +58,7 @@
 import React, { useState } from 'react';
 import Sidebar from './sidebar';
 import ExamDetails from './examDetails'; 
+import DutyDetails from './dutyDetails';
 import axios from 'axios';
 import {Link} from 'react-router-dom'
 
@@ -88,7 +89,7 @@ const AdminDashboard = () => {
         
         
       case 'dutyDetails':
-        return <utyDetails />; // Placeholder for View Duty Details page content
+        return <DutyDetails />; // Placeholder for View Duty Details page content
       // Add cases for other pages as needed
       default:
         return null;

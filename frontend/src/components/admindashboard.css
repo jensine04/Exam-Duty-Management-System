@@ -2,11 +2,16 @@
 
 .admin-dashboard {
   display: flex;
+  
 
 }
 .main-content{
   padding: 0;
   margin-right: 0;
+  flex: 1;
+  
+  
+
 }
 /* .sidebar {
   width: 300px;
