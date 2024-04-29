@@ -49,3 +49,19 @@
 width: 200px;
 border-radius: 50%;
 }
+.back-button {
+  /* Button styles */
+  display: block;
+  width: 40px; /* Adjust width as needed */
+  height: 40px; /* Adjust height as needed */
+  border: none;
+  border-radius: 50%; /* Make the button round */
+  background-color: white;
+  font-size: 20px; /* Adjust font size as needed */
+  color: #080808; /* Black text color */
+  cursor: pointer;
+}
+
+.back-button:hover {
+  background-color: #f0f0f0; /* Light gray background on hover */
+}

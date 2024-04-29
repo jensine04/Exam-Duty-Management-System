@@ -134,35 +134,39 @@
     color: white;
   }
   
-
-  .table__wrapper {
+  .content{
+    padding: 20px;
+    margin-right: 100px;
+  }
+  .content .table__wrapper {
     overflow-x: auto;
     height: 100%;
     width: 100%;
     margin: 80px;
+    margin-top: 40px;
     font-family: Arial, sans-serif;
   }
-  h1 {
+  .content h1 {
     font-size: 35px;
     margin-bottom: 20px;
   }
-  .table {
+  .content .table__wrapper .table {
     width: 100%;
     border-collapse: collapse;
     height: 100%;
   }
   
-  .table__header {
+  .content .table__wrapper .table .table__header {
     background-color: #0C2340;
     color: white;
   }
   
-  .table__header td {
+  .content .table__header td {
     padding: 12px;
     text-align: left;
   }
 
-  .table__body td {
+  .content .table__body td {
     font-size: 20px;
   }
   

@@ -88,7 +88,7 @@ useEffect(()=> {
   <a href="/availability"class="active">Availability</a>
   </div>
 
-  <Button  colorScheme="teal" _hover={{ bg: 'lightblue' }} mt={50} size="lg">
+  <Button  colorScheme="teal" _hover={{ bg: 'lightblue' }} mt={50} size="lg" onClick={handleLogout}>
   Logout
   </Button> </div>
 

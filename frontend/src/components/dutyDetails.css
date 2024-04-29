@@ -1,4 +1,6 @@
-
+.duty-detail{
+  margin: 50px;
+}
 
 .admin-duty-details {
   max-width: 400px;
@@ -6,6 +8,7 @@
   margin-top: 80px;
   margin-bottom: 80px;
   margin-right: 80px;
+  display: inline;
 }
 
 .admin-duty-details h2 {
@@ -14,7 +17,7 @@
 }
 
 .admin-duty-details form {
-  display: flex;
+  display: grid;
   flex-direction: row;
   gap: 10px;
 }
@@ -32,13 +35,14 @@
 
 .admin-duty-details button {
   margin-top: 10px;
-  width: 100%;
+  width: 30%;
   padding: 10px;
   background-color: #05468c;
   color: #fff;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  margin-left: 350px;
 }
 
 .admin-duty-details alert{
