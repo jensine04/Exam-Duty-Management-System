@@ -71,30 +71,27 @@ useEffect(()=> {
 
 
   return (
-    <div className="faculty-page">
-      {
+    <div>
+    {
         auth ?
         <>
-        <section className="tables">
-        <div className="faculty-info" >
-        <div className="faculty-text">
-        <img src={profiless} alt=""></img>
-        <br></br>
-        <br></br>
-        <p>{name}</p>
+    <div class="sidebar">
+    <div class="faculty-section">
+    <img src={profiless} alt=""></img>
+    <div class="faculty-details">
+    <br></br>
+    <p>{name}</p>
         <p>{department}</p>
-        <p> ID: {id}</p>
-        
-        </div>
-        {/* Add more faculty information as needed */}
-        
-      <Button colorScheme="blue" _hover={{ bg: 'lightblue' }} mt={50} size="lg">
-  Availability
-</Button>
-<Button colorScheme="blue" _hover={{ bg: 'lightblue' }} mt={50} size="lg" onClick={handleLogout}>
+        <p> ID: {id}</p><br></br>
+    </div>
+  <a href="/facultypage" > TimeTable</a>
+  <a href="/availability"class="active">Availability</a>
+  </div>
+
+  <Button  colorScheme="teal" _hover={{ bg: 'lightblue' }} mt={50} size="lg">
   Logout
-</Button>
-      </div>
+  </Button> </div>
+
       {/*
       <div>
       <table>
@@ -122,6 +119,7 @@ useEffect(()=> {
         </tbody>
       </table>
           </div>*/}
+          <div class="content">
           <div className="table__wrapper">
         <h1>Availability</h1>
         <table className="table">
@@ -185,8 +183,7 @@ useEffect(()=> {
       <Button colorScheme="teal" _hover={{ bg: 'lightblue' }} ml={900} mt={50} size="lg">
   Confirm
 </Button>
-      </div>
-      </section>
+      </div></div>
       </>
       :
       <div> 

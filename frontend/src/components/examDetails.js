@@ -20,6 +20,7 @@ const ExamDetails = () => {
   
   axios.defaults.withCredentials=true;
   // State to store exam details
+  const [previewImage, setPreviewImage] = useState(null);
 
 
   const [exams, setExams] = useState([
@@ -31,7 +32,28 @@ const ExamDetails = () => {
     const newExams = [...exams];
     newExams[index].timetable = event.target.files[0];
     setExams(newExams);
+    // viewtt(event.target.files[0])
+
+   
   };
+  const viewImage = () => {
+    if (!exams[0].timetable) {
+      alert('Please upload a file first.');
+      return;
+    }
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const imageUrl = e.target.result;
+      // Display the image using the URL created from FileReader
+      // alert('Image uploaded: ' + imageUrl);
+      setPreviewImage(imageUrl);
+    };
+    reader.readAsDataURL(exams[0].timetable);
+  };
+
+  // const viewImage=()=>{
+  //   return <img src={URL.createObjectURL(tt)} alt="images" width='200px' height='200px' />;
+  // }
 
   // Function to add a new set of exam details
   // const handleAddExam = () => {
@@ -83,6 +105,7 @@ const ExamDetails = () => {
      // console.log('Submitting duty details:', dutyDetails);
     setExams([{ series: '', semester: '', startDate: '', timetable: null }]);
       //console.log('Exams submitted:', response.data);
+      setPreviewImage(null);
       
     } catch (error) {
       console.error('Error submitting exams:', error);
@@ -117,12 +140,17 @@ const ExamDetails = () => {
           />
           <input
             type="file"
+            
             onChange={(e) => handleFileChange(e, index)}
             
+            
+            
           />
+          <button onClick={viewImage}>View Image</button>
           
         </div>
       ))}
+      <img src={previewImage} />
       {/* Button to add another set of exam details */}
       {/* <button className="add-exam-btn" onClick={handleAddExam}>Add Another Exam</button> */}
       {/* Button to submit exams */}

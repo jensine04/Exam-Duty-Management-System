@@ -128,6 +128,13 @@ const DutyDetails = () => {
 
 export default DutyDetails;
 */
+
+import {
+  Alert,
+  AlertIcon,
+  AlertTitle,
+  AlertDescription,
+} from '@chakra-ui/react'
 import React, { useEffect,useState } from 'react';
 
 import axios from 'axios';
@@ -150,6 +157,7 @@ const DutyDetails = () => {
   // Function to handle removing a row for duty details
   
   // Function to handle submitting duty details
+  
   const handleSubmit = (event) => {
     // Logic to submit duty details to the server
     event.preventDefault();
@@ -159,7 +167,11 @@ const DutyDetails = () => {
       .catch(err=> console.log("error"));
     console.log('Submitting duty details:', dutyDetails);
     setDutyDetails([{ date: '', startTime: '', endTime: '', classroom: '' }]);
+
+
+
   };
+  
 
   return (
     <div className="admin-duty-details">
@@ -180,6 +192,11 @@ const DutyDetails = () => {
       ))}
      
       <button onClick={handleSubmit}>Submit</button>
+
+
+  
+
+
     </div>
   );
 };
