@@ -76,11 +76,11 @@ const handleAvailabilityClick = () => {
   <a href="/availability">Availability</a>
   </div>
 
-  <Button  colorScheme="teal" _hover={{ bg: 'lightblue' }} mt={50} size="lg">
+  <Button  colorScheme="teal" _hover={{ bg: 'lightblue' }} mt={50} size="lg" onClick={handleLogout}>
   Logout
   </Button> </div>
-
-  <div class="content">
+  
+  <div className="content">
   <div className="table__wrapper">
         <h1>Upcoming Exams</h1>
         <table className="table">

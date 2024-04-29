@@ -60,8 +60,9 @@ import Sidebar from './sidebar';
 import ExamDetails from './examDetails'; 
 import DutyDetails from './dutyDetails';
 import axios from 'axios';
-import {Link} from 'react-router-dom'
+import {Link} from 'react-router-dom';
 import ViewDetails from './viewDetails';
+
 
 import'./admindashboard.css'// Placeholder for View Exam Details page content
 
@@ -143,18 +144,25 @@ const AdminDashboard = () => {
   
   return (
     <div className="admin-dashboard">
+      
       {
         auth ?
         <>
-      <Sidebar adminInfo={adminInfo} onPageChange={handlePageChange} />
+      <Sidebar adminInfo={adminInfo} onPageChange={handlePageChange}>
+      
+      </Sidebar>
+       
       <div className="main-content">
+      
         {renderMainContent()}
       </div>
       </>
         :
-        <div> 
-        <h3>You are not logged in</h3>
-        <Link to='/' className='btn btn-primary'>Login</Link>
+
+        <div className="Logout"> 
+        <h3>Oops!!! <br></br>Not logged in</h3>
+        <Link to="/adminLogin" className='logout-link'>Click here  to Login</Link>
+        
       </div>
       }
     </div>

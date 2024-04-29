@@ -128,12 +128,12 @@ const DutyDetails = () => {
 
 export default DutyDetails;
 */
-
+import { useDisclosure } from '@chakra-ui/react';
 import {
   Alert,
   AlertIcon,
   AlertTitle,
-  AlertDescription,
+  AlertDescription,Box, CloseButton
 } from '@chakra-ui/react'
 import React, { useEffect,useState } from 'react';
 
@@ -143,6 +143,8 @@ import './dutyDetails.css';
 const DutyDetails = () => {
   const [dutyDetails, setDutyDetails] = useState([{ date: '', startTime: '', endTime: '', classroom: '' }]);
 
+  const [isDutyAdded, setIsDutyAdded] = useState(false);
+  const { isOpen: isVisible, onClose, onOpen } = useDisclosure();
   // Function to handle adding a new row for duty details
  
 
@@ -167,15 +169,17 @@ const DutyDetails = () => {
       .catch(err=> console.log("error"));
     console.log('Submitting duty details:', dutyDetails);
     setDutyDetails([{ date: '', startTime: '', endTime: '', classroom: '' }]);
-
-
-
+    
+    //alert message
+    setIsDutyAdded(true);
+    onOpen();
   };
+  
   
 
   return (
     <div className="admin-duty-details">
-      <h2>Enter Duty Details</h2>
+      
       {dutyDetails.map((detail, index) => (
         <div key={index} className="duty-detail">
           <label>Date:</label>
@@ -192,13 +196,37 @@ const DutyDetails = () => {
       ))}
      
       <button onClick={handleSubmit}>Submit</button>
+     
 
+      {isDutyAdded && (
+        <CompExample isVisible={isVisible} onClose={onClose} />
+      )}
+    </div>
+  );
+}
 
+function CompExample({ isVisible, onClose }) {
+  return isVisible ? (
+    <div className="alert">
+    <Alert status='success'>
+    <AlertIcon />
+    EXAM DETAILS UPLOADED SUCCESSFULLY!!
+  
+    <CloseButton style={{backgroundColor: 'transparent', color: 'white'}}
+        alignSelf='flex-start'
+        position='absolute'
+        right={-175}
+        blockSize={2}
+        size={2}
+        top={1.2}
+        colorScheme="gray"
+        onClick={onClose}
+      />
+    </Alert></div>
+  ) : null;
   
 
 
-    </div>
-  );
 };
 
 export default DutyDetails;
