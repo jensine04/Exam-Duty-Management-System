@@ -17,7 +17,7 @@
 }
 
 .form-container {
-  display: grid;
+  
   grid-template-columns: repeat(4, 1fr);
   gap: 10px;
 }
@@ -65,7 +65,7 @@
 /* Style the "Choose File" button */
 .form-container input[type="file"] {
   color: transparent; /* Hide the default text color */
-  cursor: pointer; 
+  /* cursor: pointer;  */
   font-weight: bold;/* Show pointer cursor on hover */
 }
 
@@ -90,7 +90,7 @@
   border-radius: 5px; /* Add border radius for rounded corners */
 }
 
-.form-container input[type="file"] {
-  cursor: pointer; /* Change cursor to pointer for file input */
-}
+/* .form-container input[type="file"] {
+  cursor: pointer;
+} */
 
