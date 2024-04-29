@@ -41,6 +41,11 @@
   cursor: pointer;
 }
 
+.admin-duty-details alert{
+  background-color: #058c5b;
+  color: #fff;
+}
+
 .admin-duty-details button:hover {
   background-color: #0056b3;
 } 
