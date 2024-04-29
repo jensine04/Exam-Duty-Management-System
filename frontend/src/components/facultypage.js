@@ -68,15 +68,15 @@ const handleAvailabilityClick = () => {
     <img src={profiless} alt=""></img>
     <div class="faculty-details">
     <br></br>
-    <p>{name}</p>
-        <p>{department}</p>
+    <p>Name: {name}</p>
+        <p>Department: {department}</p>
         <p> ID: {id}</p><br></br>
     </div>
   <a href="/facultypage" class="active"> TimeTable</a>
   <a href="/availability">Availability</a>
   </div>
 
-  <Button  colorScheme="blue" _hover={{ bg: 'lightblue' }} mt={50} size="lg">
+  <Button  colorScheme="teal" _hover={{ bg: 'lightblue' }} mt={50} size="lg">
   Logout
   </Button> </div>
 
