@@ -1,9 +1,11 @@
-
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './facultypage.css'; // Import the CSS file
 import profiless from '../images/profiless.png'
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@chakra-ui/react';
+import axios from 'axios';
+import {Link} from 'react-router-dom'
+
 
 function FacultyPage() {
   // State to manage the exam schedule
@@ -19,56 +21,67 @@ const handleAvailabilityClick = () => {
   navigate('/availability'); 
 };
 
+
+  const [auth,setAuth] = useState(false)
+  const [name,setName] = useState('')
+  const [department,setDepartment] = useState('')
+  const [id,setId] = useState('')
+
+  const [message,setMessage] = useState('')
+  axios.defaults.withCredentials=true;
+
+  useEffect(()=> {
+    axios.get('http://localhost:3001/facultypage')
+    .then(res=> {
+      if (res.data.Status === 'Success'){
+        setAuth(true);
+        setName(res.data.name);
+        setDepartment(res.data.department);
+        setId(res.data.id);
+        console.log(res.data);}
+      else {
+        setAuth(false)
+        setMessage(res.data.Message);
+      }
+      }
+     )
+    })
+
+      const handleLogout= () => {
+        axios.get('http://localhost:3001/logout')
+        .then( res => {
+          if (res.data.Status === 'Success'){
+            window.location.href = '/facultylogin';}
+          else {
+            alert("error")
+          }
+        }) .catch (err => console.log(err))
+      }
+
   return (
-    <div className="faculty-page">
-        <section className="tables">
-        <div className="faculty-info" >
-        <div className="faculty-text">
-        <img src={profiless} alt=""></img>
-        <br></br>
-        <br></br>
-        <p>Murali Mohan</p>
-        <p>Computer Science</p>
-        <p> Class: CSB</p>
-        
-        </div>
-        {/* Add more faculty information as needed */}
-        
-      <Button  colorScheme="blue" _hover={{ bg: 'lightblue' }} mt={50} size="lg" onClick={handleAvailabilityClick}>
-  Availability
-</Button>
-<Button  colorScheme="blue" _hover={{ bg: 'lightblue' }} mt={50} size="lg">
+    <div>
+    {
+        auth ?
+        <>
+    <div class="sidebar">
+    <div class="faculty-section">
+    <img src={profiless} alt=""></img>
+    <div class="faculty-details">
+    <br></br>
+    <p>{name}</p>
+        <p>{department}</p>
+        <p> ID: {id}</p><br></br>
+    </div>
+  <a href="/facultypage" class="active"> TimeTable</a>
+  <a href="/availability">Availability</a>
+  </div>
+
+  <Button  colorScheme="blue" _hover={{ bg: 'lightblue' }} mt={50} size="lg">
   Logout
-</Button>
-      </div>
-      {/*
-      <div>
-      <table>
-        <thead>
-          <tr>
-            <th>Date & Time</th>
-            <th>Classroom</th>
-            <th>Availability</th>
-          </tr>
-        </thead>
-        <tbody>
-          {examSchedule.map((exam) => (
-            <tr key={exam.id}>
-              <td>{exam.dateTime}</td>
-              <td>{exam.classroom}</td>
-              <td>
-                <input
-                  type="checkbox"
-                  checked={exam.available}
-                  onChange={() => toggleAvailability(exam.id)}
-                />
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-          </div>*/}
-          <div className="table__wrapper">
+  </Button> </div>
+
+  <div class="content">
+  <div className="table__wrapper">
         <h1>Upcoming Exams</h1>
         <table className="table">
           <thead className="table__header">
@@ -104,8 +117,15 @@ const handleAvailabilityClick = () => {
    
           </tbody>
         </table>
+      </div></div></>
+      :
+      <div> 
+        <h3>You are not logged in</h3>
+        <h3>Login</h3>
+        <Link to='/' className='btn btn-primary'>Login</Link>
       </div>
-      </section>
+      
+      }
     </div>
   );
 }

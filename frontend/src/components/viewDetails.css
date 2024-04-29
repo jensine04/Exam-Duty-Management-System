@@ -1,5 +1,5 @@
 /* viewDetails.css */
-
+/*
 .view-duty-details {
   margin:30px;
 }
@@ -7,7 +7,7 @@
 
 
 .view-duty-details table {
-  width: 100%;
+  width: 300px;
   border-collapse: collapse; 
 }
 
@@ -28,4 +28,29 @@
 
 .view-duty-details tbody tr:hover {
   background-color: #ddd;
+}
+*/
+
+.view-duty-details {
+  margin-top: 20px;
+}
+
+.view-duty-details table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.view-duty-details th,
+.view-duty-details td {
+  border: 1px solid #dddddd;
+  padding: 8px;
+}
+
+.view-duty-details th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+.view-duty-details tr:nth-child(even) {
+  background-color: #f2f2f2;
 }
