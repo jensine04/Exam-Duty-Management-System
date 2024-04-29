@@ -61,6 +61,7 @@ import ExamDetails from './examDetails';
 import DutyDetails from './dutyDetails';
 import axios from 'axios';
 import {Link} from 'react-router-dom'
+import ViewDetails from './viewDetails';
 
 import'./admindashboard.css'// Placeholder for View Exam Details page content
 
@@ -74,14 +75,17 @@ const AdminDashboard = () => {
   const [message,setMessage] = useState('')
   axios.defaults.withCredentials=true;
 
+  
+
  
 
   // Placeholder admin information
   const [adminInfo,setAdminInfo] = useState({
     name: '',
-    department: '',
-    id: ''
-  });
+    username: '',
+    email: ''
+  })
+  ;
 
   const [currentPage, setCurrentPage] = useState('examDetails'); // Default to View Exam Details page
 
@@ -126,6 +130,9 @@ const AdminDashboard = () => {
       case 'dutyDetails':
         return <DutyDetails />; // Placeholder for View Duty Details page content
       // Add cases for other pages as needed
+
+      case 'viewDetails':
+        return <ViewDetails/>;
       default:
         return null;
     }

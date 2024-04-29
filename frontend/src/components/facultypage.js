@@ -59,57 +59,29 @@ const handleAvailabilityClick = () => {
       }
 
   return (
-    <div className="faculty-page">
-        {
-          auth ?
-        <section className="tables">
-        <div className="faculty-info" >
-        <div className="faculty-text">
-        <img src={profiless} alt=""></img>
-        <br></br>
-        <br></br>
-        <p>{name}</p>
+    <div>
+    {
+        auth ?
+        <>
+    <div class="sidebar">
+    <div class="faculty-section">
+    <img src={profiless} alt=""></img>
+    <div class="faculty-details">
+    <br></br>
+    <p>{name}</p>
         <p>{department}</p>
-        <p> ID: {id}</p>
-        
-        </div>
-        {/* Add more faculty information as needed */}
-        
-      <Button  colorScheme="blue" _hover={{ bg: 'lightblue' }} mt={50} size="lg" onClick={handleAvailabilityClick}>
-  Availability
-</Button>
-<Button  colorScheme="blue" _hover={{ bg: 'lightblue' }} mt={50} size="lg" onClick={handleLogout}>
+        <p> ID: {id}</p><br></br>
+    </div>
+  <a href="/facultypage" class="active"> TimeTable</a>
+  <a href="/availability">Availability</a>
+  </div>
+
+  <Button  colorScheme="blue" _hover={{ bg: 'lightblue' }} mt={50} size="lg">
   Logout
-</Button>
-      </div>
-      {/*
-      <div>
-      <table>
-        <thead>
-          <tr>
-            <th>Date & Time</th>
-            <th>Classroom</th>
-            <th>Availability</th>
-          </tr>
-        </thead>
-        <tbody>
-          {examSchedule.map((exam) => (
-            <tr key={exam.id}>
-              <td>{exam.dateTime}</td>
-              <td>{exam.classroom}</td>
-              <td>
-                <input
-                  type="checkbox"
-                  checked={exam.available}
-                  onChange={() => toggleAvailability(exam.id)}
-                />
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-          </div>*/}
-          <div className="table__wrapper">
+  </Button> </div>
+
+  <div class="content">
+  <div className="table__wrapper">
         <h1>Upcoming Exams</h1>
         <table className="table">
           <thead className="table__header">
@@ -145,8 +117,7 @@ const handleAvailabilityClick = () => {
    
           </tbody>
         </table>
-      </div>
-      </section>
+      </div></div></>
       :
       <div> 
         <h3>You are not logged in</h3>
@@ -155,8 +126,6 @@ const handleAvailabilityClick = () => {
       </div>
       
       }
-
-
     </div>
   );
 }
