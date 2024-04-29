@@ -1,0 +1,31 @@
+/* viewDetails.css */
+
+.view-duty-details {
+  margin:30px;
+}
+
+
+
+.view-duty-details table {
+  width: 100%;
+  border-collapse: collapse; 
+}
+
+.view-duty-details th,
+.view-duty-details td {
+  padding: 8px;
+  border: 1px solid #ddd;
+}
+
+.view-duty-details th {
+  background-color: #f2f2f2;
+  text-align: left;
+}
+
+.view-duty-details tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.view-duty-details tbody tr:hover {
+  background-color: #ddd;
+}

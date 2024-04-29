@@ -59,6 +59,7 @@ import React, { useState } from 'react';
 import Sidebar from './sidebar';
 import ExamDetails from './examDetails'; 
 import DutyDetails from './dutyDetails';
+import ViewDetails from './viewDetails';
 import'./admindashboard.css'// Placeholder for View Exam Details page content
 
 const AdminDashboard = () => {
@@ -66,7 +67,7 @@ const AdminDashboard = () => {
   const adminInfo = {
     name: 'Admin Name',
     username: 'admin123',
-    email: 'admin@example.com'
+    dept: 'CS'
   };
 
   const [currentPage, setCurrentPage] = useState('examDetails'); // Default to View Exam Details page
@@ -88,6 +89,9 @@ const AdminDashboard = () => {
       case 'dutyDetails':
         return <DutyDetails />; // Placeholder for View Duty Details page content
       // Add cases for other pages as needed
+
+      case 'viewDetails':
+        return <ViewDetails/>;
       default:
         return null;
     }

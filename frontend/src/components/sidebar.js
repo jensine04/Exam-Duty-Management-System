@@ -16,12 +16,14 @@ const Sidebar = ({ adminInfo, onPageChange }) => {
          </div>
         <p>Name: {adminInfo.name}</p>
         <p>Username: {adminInfo.username}</p>
-        <p>Email: {adminInfo.email}</p>
+        <p>Department: {adminInfo.dept}</p>
       </div>
       <div className="sidebar-options">
         <button onClick={() => handlePageChange('examDetails')}>Upload Exam Details</button>
         <button onClick={() => handlePageChange('dutyDetails')}>Upload Duty Details</button>
+        <button onClick={() =>handlePageChange('viewDetails')}>View Duty Details</button>
         <button onClick={() => handlePageChange('logout')}>Logout</button>
+       
       </div>
     </div>
   );
