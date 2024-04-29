@@ -67,6 +67,7 @@ const Sidebar = ({ adminInfo, onPageChange }) => {
       <div className="sidebar-options">
         <button onClick={() => handlePageChange('examDetails')}>Upload Exam Details</button>
         <button onClick={() => handlePageChange('dutyDetails')}>Upload Duty Details</button>
+        <button onClick={() =>handlePageChange('viewDetails')}>View Duty Details</button>
         <button onClick={handleLogout}>Logout</button>
       </div>
       </>
