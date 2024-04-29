@@ -20,6 +20,7 @@ const [name,setName] = useState('')
 const [department,setDepartment] = useState('')
 const [id,setId] = useState('')
 
+const [fetchDetails, setFetchDetails] = useState([]);
 //const [message,setMessage] = useState('')
 axios.defaults.withCredentials=true;
 
@@ -31,6 +32,7 @@ useEffect(()=> {
       setName(res.data.name);
       setDepartment(res.data.department);
       setId(res.data.id);
+      //setFetchDetails(res.data.availabilityData);
       console.log(res.data);}
     else {
       setAuth(false)
@@ -39,6 +41,22 @@ useEffect(()=> {
     }
    )
   })
+
+  useEffect(()=> { 
+    axios.post('http://localhost:3001/availabilitycontent')
+    .then(res=> {
+        console.log('is this res',res.data);
+        setFetchDetails(res.data);
+        console.log('fetchdet',fetchDetails[0].date);
+      //}
+      // else {
+      //   setAuth(false)
+      //   //setMessage(res.data.Message);
+      // }
+      })
+      .catch(err => console.log("ERROR"))
+     
+    },[]);
 
     const handleLogout= () => {
       axios.get('http://localhost:3001/logout')
@@ -115,11 +133,28 @@ useEffect(()=> {
               <td>Availability</td>
             </tr>
           </thead>
-          <tbody className="table__body">
           
-      <tr>
-        <td>16-06-2024</td>
-        <td>9:30 A.M</td>
+          
+      
+      
+          <tbody>
+          {fetchDetails.map((detail, index) => (
+            <tr key={index}>
+              <td>{detail.date}</td>
+              <td>{detail.stime}</td>
+              <td>{detail.etime}</td>
+              <td><label>
+                <input type="checkbox" />
+
+              </label></td>
+            </tr>
+          ))}
+        </tbody>
+      
+      
+      {/* <tr>
+        <td>{fetchDetails[0].date}</td>
+        <td>detail[0].date</td>
         <td>11:00 A.M</td>
         <td><label>
         <input type="checkbox" />
@@ -144,9 +179,8 @@ useEffect(()=> {
        
       </label></td>
       </tr>
-      
+       */}
    
-          </tbody>
         </table>
       <Button colorScheme="teal" _hover={{ bg: 'lightblue' }} ml={900} mt={50} size="lg">
   Confirm
