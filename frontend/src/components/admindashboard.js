@@ -144,11 +144,16 @@ const AdminDashboard = () => {
   
   return (
     <div className="admin-dashboard">
+      
       {
         auth ?
         <>
-      <Sidebar adminInfo={adminInfo} onPageChange={handlePageChange} />
+      <Sidebar adminInfo={adminInfo} onPageChange={handlePageChange}>
+      
+      </Sidebar>
+       
       <div className="main-content">
+      
         {renderMainContent()}
       </div>
       </>

@@ -20,7 +20,7 @@ app.use(cookieParser());
 const db = mysql.createConnection({
     host: "localhost",
     user: 'root',
-    password: "Angela@123",
+    password: "Angel@jan8",
     database: "edms",
 });
 db.connect((err) => {
@@ -116,6 +116,17 @@ app.post('/dutydetails',(req,res)=>{
         if(err) return res.json("Error");
         else{
             return res.json(data);
+        }
+        
+    })
+})
+
+app.post('/availabilitycontent',(req,res)=>{
+    const sql ="SELECT * FROM examdetails";
+    db.query(sql,(err,result)=>{
+        if(err) return res.json({Message: "Error in server"});
+        else{
+            return res.json(result);
         }
         
     })
