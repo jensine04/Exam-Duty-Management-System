@@ -53,9 +53,9 @@ const AdminLogin = () => {
               <input type="password" name="" value={password} onChange={(e) => setPassword(e.target.value)} />
               {errors.password && <span className='text-danger'> {errors.password} </span>}
             </div>
-            <div className="remember">
-              <label><input type="checkbox" name="" />Remember me</label>
-            </div>
+            {/* <div className="remember">
+              <label><input type="checkbox" name=""    />Remember me</label>
+            </div> */}
             <div className="inputBx">
               <input type="submit" value="Sign in" name="" />
             </div>

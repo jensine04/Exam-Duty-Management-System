@@ -88,7 +88,13 @@ section {
 
 .inputBx input[type="checkbox"] {
   margin-right: 10px;
+  
 }
+
+.remember[type="checkbox"]{
+  margin-left: 50px;
+}
+
 
 .inputBx input[type="submit"] {
   background: #0C2340;
@@ -110,6 +116,8 @@ section {
   color: #607d8b;
   font-weight: 400;
   font-size: 14px;
+  margin: 10px;
+  
 }
 
 .inputBx p {
@@ -118,6 +126,7 @@ section {
 
 .inputBx p a {
   color: #0C2340;
+  
 }
 
 /* Responsive styles */

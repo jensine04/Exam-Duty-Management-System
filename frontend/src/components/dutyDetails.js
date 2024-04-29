@@ -175,7 +175,7 @@ const DutyDetails = () => {
 
   return (
     <div className="admin-duty-details">
-      <h2>Enter Duty Details</h2>
+      
       {dutyDetails.map((detail, index) => (
         <div key={index} className="duty-detail">
           <label>Date:</label>
