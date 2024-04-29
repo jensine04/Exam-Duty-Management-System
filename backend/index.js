@@ -109,6 +109,18 @@ app.post('/adminlogin',(req,res)=>{
     })
 })
 
+app.post('/dutydetails',(req,res)=>{
+    const sql ="INSERT INTO examdetails (`sl_no`,`classroom`,`date`,`stime`,`etime`) Values (NULL,?,?,?,?)";
+    console.log('req body classroom',req.body.dutyDetails[0].classroom , req.body.dutyDetails[0].date , req.body.dutyDetails[0].startTime, req.body.dutyDetails[0].endTime);
+    db.query(sql,[req.body.dutyDetails[0].classroom , req.body.dutyDetails[0].date , req.body.dutyDetails[0].startTime, req.body.dutyDetails[0].endTime],(err,data)=>{
+        if(err) return res.json("Error");
+        else{
+            return res.json(data);
+        }
+        
+    })
+})
+
 app.get('/logout',(req, res) => {
     res.clearCookie('token');
     return res.json({Status: "Success"})

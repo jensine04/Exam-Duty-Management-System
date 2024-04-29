@@ -34,9 +34,9 @@ const ExamDetails = () => {
   };
 
   // Function to add a new set of exam details
-  const handleAddExam = () => {
-    setExams([...exams, { series: '', semester: '', startDate: '', timetable: null }]);
-  };
+  // const handleAddExam = () => {
+  //   setExams([...exams, { series: '', semester: '', startDate: '', timetable: null }]);
+  // };
 
 
 
@@ -66,20 +66,24 @@ const ExamDetails = () => {
   // Function to submit exams
   const handleSubmit = async () => {
     try {
-      const formData = new FormData();
-      exams.forEach((exam, index) => {
-        formData.append(`series${index}`, exam.series);
-        formData.append(`semester${index}`, exam.semester);
-        formData.append(`startDate${index}`, exam.startDate);
-        formData.append(`timetable${index}`, exam.timetable);
-      });
+      // const formData = new FormData();
+      // exams.forEach((exam, index) => {
+      //   formData.append(`series${index}`, exam.series);
+      //   formData.append(`semester${index}`, exam.semester);
+      //   formData.append(`startDate${index}`, exam.startDate);
+      //   formData.append(`timetable${index}`, exam.timetable);
+      // });
       // Send exam details to server
-      const response = await axios.post('/api/exams', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data'
-        }
-      });
-      console.log('Exams submitted:', response.data);
+      // const response = await axios.post('/api/exams', formData, {
+      //   headers: {
+      //     'Content-Type': 'multipart/form-data'
+      //   }
+      // });
+
+     // console.log('Submitting duty details:', dutyDetails);
+    setExams([{ series: '', semester: '', startDate: '', timetable: null }]);
+      //console.log('Exams submitted:', response.data);
+      
     } catch (error) {
       console.error('Error submitting exams:', error);
     }
@@ -120,7 +124,7 @@ const ExamDetails = () => {
         </div>
       ))}
       {/* Button to add another set of exam details */}
-      <button className="add-exam-btn" onClick={handleAddExam}>Add Another Exam</button>
+      {/* <button className="add-exam-btn" onClick={handleAddExam}>Add Another Exam</button> */}
       {/* Button to submit exams */}
       <button className="submit-exam-btn" onClick={handleSubmit}>Submit Exams</button>
 
