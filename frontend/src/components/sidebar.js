@@ -56,6 +56,11 @@ const Sidebar = ({ adminInfo, onPageChange }) => {
     <div className="sidebar">{
       auth ?
       <>
+      <button className="back-button" onclick="goBack()">
+      <span style={{ fontWeight: '900',fontSize: '21px' }}>&lt;</span>
+   
+</button>
+
       <div className="profile-info">
       <div className="imgBox">
            <img src={profiless} alt=""></img>
