@@ -121,8 +121,30 @@ app.post('/dutydetails',(req,res)=>{
     })
 })
 
+app.post('/checkbox',(req,res)=>{
+    
+    const { selectedRows, id } = req.body;
+    const promises=selectedRows.map(row => {
+    const sql = "UPDATE examdetails SET assigned = 1, t_id = ? WHERE date = ? AND stime = ? AND etime=? LIMIT 1";
+    return new Promise((resolve, reject) => {
+    console.log('row',row.stime,row.etime)
+    db.query(sql, [id, row.date ,row.stime ,row.etime],(err,data)=>{
+        if(err) 
+        reject(err);
+        //return res.json("Error updating row");
+        else{
+            console.log('succes?',row)
+            //return res.json(data);
+            resolve(data);
+        }
+    });
+
+    })
+})
+})
+
 app.post('/availabilitycontent',(req,res)=>{
-    const sql ="SELECT * FROM examdetails";
+    const sql ="SELECT date,stime,MIN(etime) AS etime FROM examdetails WHERE assigned = 0 GROUP BY date, stime, etime ORDER BY date, stime ";
     db.query(sql,(err,result)=>{
         if(err) return res.json({Message: "Error in server"});
         else{

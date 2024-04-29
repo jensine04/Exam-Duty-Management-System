@@ -14,17 +14,18 @@ function Availability() {
     { id: 3, dateTime: 'May 3, 2024 - 9:00 AM', classroom: 'Room C', available: false },
   ]);
 */}
-
+const navigate = useNavigate();
 const [auth,setAuth] = useState(false)
 const [name,setName] = useState('')
 const [department,setDepartment] = useState('')
 const [id,setId] = useState('')
 
 const [fetchDetails, setFetchDetails] = useState([]);
+const [checkedRows, setCheckedRows] = useState({});
 //const [message,setMessage] = useState('')
 axios.defaults.withCredentials=true;
 
-useEffect(()=> { 
+useEffect(()=> {  
   axios.get('http://localhost:3001/availability')
   .then(res=> {
     if (res.data.Status === 'Success'){
@@ -68,6 +69,30 @@ useEffect(()=> {
         }
       }) .catch (err => console.log(err))
     }
+
+    const handleCheckboxChange = (index) => {
+      setCheckedRows({
+        ...checkedRows,
+        [index]: !checkedRows[index],
+      });
+    };
+  
+    const handleConfirm = () => {
+    const selectedRows = Object.entries(checkedRows)
+      .filter(([_, isChecked]) => isChecked)
+      .map(([index, _]) => fetchDetails[index]);
+
+    // Now you have the selected rows, you can send them to the backend
+    console.log('Selected Rows:', selectedRows,'id is',id);
+    axios.post('http://localhost:3001/checkbox', { selectedRows ,id})
+      .then(res => {
+        console.log("availability updated");
+        navigate('/facultypage');
+      })
+      .catch(err => console.log("error"));
+    console.log('Submitting');
+    setCheckedRows({});
+  };
 
 
   return (
@@ -142,7 +167,7 @@ useEffect(()=> {
               <td>{detail.stime}</td>
               <td>{detail.etime}</td>
               <td><label>
-                <input type="checkbox" />
+                <input type="checkbox" checked={checkedRows[index]} onChange={() => handleCheckboxChange(index)} />
 
               </label></td>
             </tr>
@@ -180,7 +205,7 @@ useEffect(()=> {
        */}
    
         </table>
-      <Button colorScheme="teal" _hover={{ bg: 'lightblue' }} ml={900} mt={50} size="lg">
+      <Button colorScheme="teal" _hover={{ bg: 'lightblue' }} ml={900} mt={50} size="lg" onClick={handleConfirm}>
   Confirm
 </Button>
       </div></div>
