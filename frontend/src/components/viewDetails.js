@@ -1,7 +1,7 @@
 // ViewDutyDetails.js
 import React, { useState, useEffect } from 'react';
 import './viewDetails.css'; // Import CSS file for styling
- // Import Axios for making HTTP requests
+// Import Axios for making HTTP requests
 
 
 const ViewDetails = () => {
