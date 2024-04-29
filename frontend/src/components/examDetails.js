@@ -83,6 +83,7 @@ const ExamDetails = () => {
      // console.log('Submitting duty details:', dutyDetails);
     setExams([{ series: '', semester: '', startDate: '', timetable: null }]);
       //console.log('Exams submitted:', response.data);
+      
     } catch (error) {
       console.error('Error submitting exams:', error);
     }
