@@ -4,6 +4,9 @@ import mec from '../images/mec.jpg'
 import axios from 'axios';
 import Validation from './loginvalidation';
 import { useNavigate } from 'react-router-dom';
+import { ArrowLeftIcon} from '@chakra-ui/icons'
+import { Link, Icon, Flex} from '@chakra-ui/react';
+import { MdNavigateNext } from 'react-icons/md'; 
 //import {Link} from 'react-router-dom'
   
 const FacultyLogin = () => {
@@ -40,6 +43,10 @@ const FacultyLogin = () => {
         <img src={mec} alt="Background" /><img/>
       </div>
       <div className="contentBx">
+      <Link href="/" textDecoration="none">
+      <ArrowLeftIcon  w={5} h={5} marginTop={-575} marginLeft={-12} color="#0C2340"/>
+    </Link>
+      
         <div className="formBx">
           <h2>Login for Faculty</h2>
           <form onSubmit={handleSubmit}>

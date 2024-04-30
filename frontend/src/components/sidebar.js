@@ -56,10 +56,8 @@ const Sidebar = ({ adminInfo, onPageChange }) => {
     <div className="sidebar">{
       auth ?
       <>
-      <button className="back-button" onclick="goBack()">
-      <span style={{ fontWeight: '900',fontSize: '21px' }}>&lt;</span>
-   
-</button>
+      
+     
 
       <div className="profile-info">
       <div className="imgBox">
@@ -70,7 +68,7 @@ const Sidebar = ({ adminInfo, onPageChange }) => {
         <p>ID: {adminInfo.id}</p>
       </div>
       <div className="sidebar-options">
-        <button onClick={() => handlePageChange('examDetails')}>Upload Exam Details</button>
+        <button onClick={() => handlePageChange('examDetails')}>Upload Exam Timetable</button>
         <button onClick={() => handlePageChange('dutyDetails')}>Upload Duty Details</button>
         <button onClick={() =>handlePageChange('viewDetails')}>View Duty Details</button>
         <button onClick={handleLogout}>Logout</button>
