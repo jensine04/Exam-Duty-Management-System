@@ -16,6 +16,7 @@ app.use(cors( {
     credentials: true,
 }
 ));
+app.use(express.static('public'));
 
 const storage = multer.diskStorage({
     destination:(req,file,cb)=> {
@@ -141,7 +142,7 @@ app.post('/checkbox',(req,res)=>{
     
     const { selectedRows, id } = req.body;
     const promises=selectedRows.map(row => {
-    const sql = "UPDATE examdetails SET assigned = 1, t_id = ? WHERE date = ? AND stime = ? AND etime=? LIMIT 1";
+    const sql = "UPDATE examdetails SET assigned = 1, t_id = ? WHERE assigned = 0 AND date = ? AND stime = ? AND etime=? LIMIT 1";
     return new Promise((resolve, reject) => {
     console.log('row',row.stime,row.etime)
     db.query(sql, [id, row.date ,row.stime ,row.etime],(err,data)=>{
@@ -194,6 +195,17 @@ app.post('/uploadimg',upload.single('image'),(req,res)=>{
 
 app.post('/availabilitycontent',(req,res)=>{
     const sql ="SELECT date,stime,MIN(etime) AS etime FROM examdetails WHERE assigned = 0 GROUP BY date, stime, etime ORDER BY date, stime ";
+    db.query(sql,(err,result)=>{
+        if(err) return res.json({Message: "Error in server"});
+        else{
+            return res.json(result);
+        }
+        
+    })
+})
+
+app.post('/examcontent',(req,res)=>{
+    const sql ="SELECT * FROM timetable";
     db.query(sql,(err,result)=>{
         if(err) return res.json({Message: "Error in server"});
         else{

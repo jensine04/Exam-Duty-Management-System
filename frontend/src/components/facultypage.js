@@ -26,6 +26,7 @@ const handleAvailabilityClick = () => {
   const [name,setName] = useState('')
   const [department,setDepartment] = useState('')
   const [id,setId] = useState('')
+  const [fetchDetails, setFetchDetails] = useState([]);
 
   const [message,setMessage] = useState('')
   axios.defaults.withCredentials=true;
@@ -46,6 +47,23 @@ const handleAvailabilityClick = () => {
       }
      )
     })
+
+
+    useEffect(()=> { 
+      axios.post('http://localhost:3001/examcontent')
+      .then(res=> {
+          console.log('is this res',res.data);
+          setFetchDetails(res.data);
+          console.log('fetchdet',fetchDetails[0].date);
+        //}
+        // else {
+        //   setAuth(false)
+        //   //setMessage(res.data.Message);
+        // }
+        })
+        .catch(err => console.log("ERROR"))
+       
+      },[]);
 
       const handleLogout= () => {
         axios.get('http://localhost:3001/logout')
@@ -93,13 +111,32 @@ const handleAvailabilityClick = () => {
               <td>View Time Table</td> 
             </tr>
           </thead>
-          <tbody className="table__body">
+
+          <tbody>
+          {fetchDetails.map((detail, index) => (
+            <tr key={index}>
+              <td>{detail.name}</td>
+              <td>{detail.sem}</td>
+              <td>
+              <a href={`http://localhost:3001/images/${detail.ttimage}`} target="_blank" rel="noopener noreferrer">
+                <Button colorScheme="teal" _hover={{ bg: 'lightblue' }} m={30} size="md">
+                {detail.ttimage}
+              </Button> 
+              </a>
+              </td>
+
+            </tr>
+          ))}
+        </tbody>
+
+
+          {/* <tbody className="table__body">
           
       <tr>
         <td>Series 1</td>
         <td>S2</td>
         <td><Button colorScheme="teal" _hover={{ bg: 'lightblue' }} m={30} size="md">
-  View Time Table
+  View
 </Button></td>
       </tr>
       <tr>
@@ -117,8 +154,8 @@ const handleAvailabilityClick = () => {
 </Button></td>
       </tr>
    
-          </tbody>
-        </table>
+          </tbody>*/}
+        </table> 
       </div></div></>
       :
       <div> 
