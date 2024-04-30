@@ -10,12 +10,17 @@
     background-color:#ffff; 
   
    
-   padding-top: 150px;
+   padding-top: 50px;
    height: 100vh;
   
   
 }
-
+.head{
+  color:#002244;
+  margin-top: 2px;
+  padding-bottom: 50px;
+  font-family: Arial, sans-serif;
+}
 .form-container {
   
   grid-template-columns: repeat(4, 1fr);

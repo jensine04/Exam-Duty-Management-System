@@ -135,6 +135,7 @@ import {
   AlertTitle,
   AlertDescription,Box, CloseButton
 } from '@chakra-ui/react'
+import { Button } from '@chakra-ui/react';
 import React, { useEffect,useState } from 'react';
 
 import axios from 'axios';
@@ -201,7 +202,9 @@ const DutyDetails = () => {
       {isDutyAdded && (
         <CompExample isVisible={isVisible} onClose={onClose} />
       )}
-      <button onClick={handleSubmit}>Submit</button>
+      <Button  colorScheme="teal" _hover={{ bg: 'lightblue' }} mt={50} size="lg" onClick={handleSubmit}>Submit
+  </Button>
+      
     </div>
   );
 }

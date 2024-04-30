@@ -37,7 +37,7 @@
   margin-top: 10px;
   width: 30%;
   padding: 10px;
-  background-color: #05468c;
+  background-color:teal;
   color: #fff;
   border: none;
   border-radius: 5px;
@@ -51,7 +51,7 @@
 }
 
 .admin-duty-details button:hover {
-  background-color: #0056b3;
+  background-color: rgba(85, 132, 132, 0.628);
 } 
 
 

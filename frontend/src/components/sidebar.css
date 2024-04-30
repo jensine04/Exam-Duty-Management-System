@@ -18,10 +18,10 @@
   margin-bottom: 10px;
   /* background-color: #05468c;
   color: #fff; */
-  background-color:white;
-  color:#041E42;
+  background-color:teal;
+  color:#fafafa;
   border: none;
-  border-radius: 5px;
+  
   cursor: pointer;
   font-size:large;
   /* font-style:Sans-serif; */
@@ -29,7 +29,7 @@
 }
 
 .sidebar-options button:hover {
-  background-color: #C8C8C8;
+  background-color: rgba(117, 160, 160, 0.516);
 }
 
 .imgBox {
