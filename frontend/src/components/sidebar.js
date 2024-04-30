@@ -47,7 +47,7 @@ const Sidebar = ({ adminInfo, onPageChange }) => {
       }
       }
      )
-    });
+    },[]);
 
 
   

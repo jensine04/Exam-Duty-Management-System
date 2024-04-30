@@ -4,6 +4,8 @@ const express =require("express");
 const mysql= require('mysql2');
 const cors= require("cors");
 const cookieParser = require('cookie-parser');
+const path = require('path');
+const multer = require('multer');
 
 const app= express();
 
@@ -14,13 +16,27 @@ app.use(cors( {
     credentials: true,
 }
 ));
+
+const storage = multer.diskStorage({
+    destination:(req,file,cb)=> {
+        cb(null,'public/images')
+    },
+    filename: (req,file,cb)=> {
+        cb(null,file.fieldname + "_" + Date.now() +path.extname(file.originalname));
+    }
+})
+
+const upload=multer({
+    storage: storage
+})
+
 app.use(cookieParser());
 
 
 const db = mysql.createConnection({
     host: "localhost",
     user: 'root',
-    password: "Al2711eena!",
+    password: "password",
     database: "edms",
 });
 db.connect((err) => {
@@ -141,6 +157,39 @@ app.post('/checkbox',(req,res)=>{
 
     })
 })
+})
+
+app.post('/uploadimg',upload.single('image'),(req,res)=>{
+    //console.log('file req',req);
+    //const { selectedRows, id } = req.body;
+    const image=req.file.filename;
+    const exams = [];
+    for (const key in req.body) {
+        if (key.startsWith('series')) {
+          const index = key.slice(6); // Extract index from the key
+          exams.push({
+            series: req.body[key],
+            semester: req.body[`semester${index}`],
+            startDate: req.body[`startDate${index}`]
+          });
+        }
+      }
+      console.log('Exams :',exams[0].series);
+      console.log('image :',image);
+
+    const sql ="INSERT INTO timetable (`examid`,`name`,`sem`,`sdate`,`ttimage`) Values (NULL,?,?,?,?)";
+    //console.log('req body classroom',req.body.dutyDetails[0].classroom , req.body.dutyDetails[0].date , req.body.dutyDetails[0].startTime, req.body.dutyDetails[0].endTime);
+    db.query(sql,[exams[0].series, exams[0].semester, exams[0].startDate,image],(err,result)=>{
+         if(err){
+            console.log('error inserting');
+             return res.json({Message:"Error"});
+              }
+         else{
+            console.log('inserted')
+             return res.json({Status:"Success"});
+         }
+        
+     })
 })
 
 app.post('/availabilitycontent',(req,res)=>{

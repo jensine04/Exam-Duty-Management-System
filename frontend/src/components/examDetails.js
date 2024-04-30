@@ -15,29 +15,32 @@ import axios from 'axios';
 import './examDetails.css';
 import {Link} from 'react-router-dom'
 
+
+
 const ExamDetails = () => {
   const [auth,setAuth] = useState(false)
   
   axios.defaults.withCredentials=true;
   // State to store exam details
   const [previewImage, setPreviewImage] = useState(null);
-
+const [file,setFile]=useState();
 
   const [exams, setExams] = useState([
-    { series: '', semester: '', startDate: '', timetable: null }
+    { series: '', semester: '', startDate: '' }
   ]);
 
   // Function to handle file input change
   const handleFileChange = (event, index) => {
+    setFile(event.target.files[0]);
     const newExams = [...exams];
-    newExams[index].timetable = event.target.files[0];
+    //newExams[index].timetable = event.target.files[0];
     setExams(newExams);
     // viewtt(event.target.files[0])
 
    
   };
   const viewImage = () => {
-    if (!exams[0].timetable) {
+    if (!file) {
       alert('Please upload a file first.');
       return;
     }
@@ -48,7 +51,7 @@ const ExamDetails = () => {
       // alert('Image uploaded: ' + imageUrl);
       setPreviewImage(imageUrl);
     };
-    reader.readAsDataURL(exams[0].timetable);
+    reader.readAsDataURL(file);
   };
 
   // const viewImage=()=>{
@@ -67,43 +70,32 @@ const ExamDetails = () => {
     .then(res=> {
       if (res.data.Status === 'Success'){
         setAuth(true);
-      //   setAdminInfo({
-      //     name: res.data.name,
-      //     department: res.data.department,
-      //     id: res.data.id 
-      // });
       console.log(res.data);
-        // setAdminInfo.name(res.data.name);
-        // setAdminInfo.department(res.data.department);
-        // setAdminInfo.id(res.data.id);
-        //console.log(res.data);
       }
       else {
         setAuth(false)
       }
       }
      )
-    });
+    },[]);
 
   // Function to submit exams
   const handleSubmit = async () => {
     try {
-      // const formData = new FormData();
-      // exams.forEach((exam, index) => {
-      //   formData.append(`series${index}`, exam.series);
-      //   formData.append(`semester${index}`, exam.semester);
-      //   formData.append(`startDate${index}`, exam.startDate);
-      //   formData.append(`timetable${index}`, exam.timetable);
-      // });
-      // Send exam details to server
-      // const response = await axios.post('/api/exams', formData, {
-      //   headers: {
-      //     'Content-Type': 'multipart/form-data'
-      //   }
-      // });
+      const formData = new FormData();
+      formData.append('image',file);
+      exams.forEach((exam, index) => {
+        formData.append(`series${index}`, exam.series);
+        formData.append(`semester${index}`, exam.semester);
+        formData.append(`startDate${index}`, exam.startDate);
+      });
+      axios.post('http://localhost:3001/uploadimg',formData)
+    .then(res=> {
+      console.log("uploaded details") })
+      .catch(err=> console.log("error"));
 
-     // console.log('Submitting duty details:', dutyDetails);
-    setExams([{ series: '', semester: '', startDate: '', timetable: null }]);
+    setExams([{ series: '', semester: '', startDate: '' }]);
+    setFile(null);
       //console.log('Exams submitted:', response.data);
       setPreviewImage(null);
       
