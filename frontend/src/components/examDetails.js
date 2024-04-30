@@ -125,7 +125,7 @@ const ExamDetails = () => {
             type="text"
             value={exam.series}
             onChange={(e) => setExams(exams.map((item, i) => (i === index ? { ...item, series: e.target.value } : item)))}
-            placeholder="Series"
+            placeholder="Exam Name"
           />
           <input
             type="text"
