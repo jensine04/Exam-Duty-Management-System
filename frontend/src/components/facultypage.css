@@ -96,7 +96,11 @@
     background-color: #333;
     padding-top: 20px;
   }
-
+  .faculty-info img{
+    margin-bottom: 20px;
+    margin-left: 31px;
+    margin-top: 50px;
+  }
   .sidebar a {
     padding: 10px 20px;
     display: block;

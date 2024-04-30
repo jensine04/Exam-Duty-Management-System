@@ -195,12 +195,13 @@ const DutyDetails = () => {
         </div>
       ))}
      
-      <button onClick={handleSubmit}>Submit</button>
+      
      
 
       {isDutyAdded && (
         <CompExample isVisible={isVisible} onClose={onClose} />
       )}
+      <button onClick={handleSubmit}>Submit</button>
     </div>
   );
 }
@@ -215,10 +216,10 @@ function CompExample({ isVisible, onClose }) {
     <CloseButton style={{backgroundColor: 'transparent', color: 'white'}}
         alignSelf='flex-start'
         position='absolute'
-        right={-175}
+        right={-3}
         blockSize={2}
         size={2}
-        top={1.2}
+        top={1.5}
         colorScheme="gray"
         onClick={onClose}
       />

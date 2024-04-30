@@ -5,6 +5,14 @@ import { useNavigate } from 'react-router-dom';
 import { Button } from '@chakra-ui/react';
 import axios from 'axios';
 import {Link} from 'react-router-dom'
+import { useDisclosure } from '@chakra-ui/react';
+import {
+  Alert,
+  AlertIcon,
+  AlertTitle,
+  AlertDescription,Box, CloseButton
+} from '@chakra-ui/react'
+
 
 function Availability() {
   // State to manage the exam schedule
@@ -22,6 +30,9 @@ const [id,setId] = useState('')
 
 const [fetchDetails, setFetchDetails] = useState([]);
 const [checkedRows, setCheckedRows] = useState({});
+
+const [isDutyAdded, setIsDutyAdded] = useState(false);
+const { isOpen: isVisible, onClose, onOpen } = useDisclosure();
 //const [message,setMessage] = useState('')
 axios.defaults.withCredentials=true;
 
@@ -34,7 +45,10 @@ useEffect(()=> {
       setDepartment(res.data.department);
       setId(res.data.id);
       //setFetchDetails(res.data.availabilityData);
-      console.log(res.data);}
+      console.log(res.data);
+     
+      }
+      
     else {
       setAuth(false)
       //setMessage(res.data.Message);
@@ -88,10 +102,15 @@ useEffect(()=> {
       .then(res => {
         console.log("availability updated");
         navigate('/facultypage');
+        
       })
       .catch(err => console.log("error"));
     console.log('Submitting');
+    setIsDutyAdded(true);
+    onOpen();
     setCheckedRows({});
+    
+    window.location.reload();
   };
 
 
@@ -102,11 +121,13 @@ useEffect(()=> {
         <>
     <div class="sidebar">
     <div class="faculty-section">
-    <img src={profiless} alt=""></img>
+    <div className="imgBox">
+           <img src={profiless} alt=""></img>
+         </div>
     <div class="faculty-details">
     <br></br>
-    <p>{name}</p>
-        <p>{department}</p>
+    <p>Name: {name}</p>
+        <p>Department: {department}</p>
         <p> ID: {id}</p><br></br>
     </div>
   <a href="/facultypage" > TimeTable</a>
@@ -205,9 +226,13 @@ useEffect(()=> {
        */}
    
         </table>
+        {isDutyAdded && (
+        <CompExample isVisible={isVisible} onClose={onClose} />
+      )}
       <Button colorScheme="teal" _hover={{ bg: 'lightblue' }} ml={900} mt={50} size="lg" onClick={handleConfirm}>
   Confirm
 </Button>
+
       </div></div>
       </>
       :
@@ -220,5 +245,25 @@ useEffect(()=> {
     </div>
   );
 }
+  function CompExample({ isVisible, onClose }) {
+    return isVisible ? (
+      <div className="alert">
+      <Alert status='success'>
+      <AlertIcon />
+      AVAILABILITY UPDATED!!
+    
+      <CloseButton style={{backgroundColor: 'transparent', color: 'white'}}
+          alignSelf='flex-start'
+          position='absolute'
+          right={3}
+          blockSize={2}
+          size={2}
+          top={5}
+          colorScheme="gray"
+          onClick={onClose}
+        />
+      </Alert></div>
+    ) : null;
+};
 
 export default Availability;

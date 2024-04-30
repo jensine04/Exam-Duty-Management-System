@@ -65,7 +65,9 @@ const handleAvailabilityClick = () => {
         <>
     <div class="sidebar">
     <div class="faculty-section">
-    <img src={profiless} alt=""></img>
+    <div className="imgBox">
+           <img src={profiless} alt=""></img>
+         </div>
     <div class="faculty-details">
     <br></br>
     <p>Name: {name}</p>
