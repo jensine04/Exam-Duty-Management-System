@@ -13,7 +13,8 @@
 import React, { useEffect,useState } from 'react';
 import axios from 'axios';
 import './examDetails.css';
-import {Link} from 'react-router-dom'
+import {Link} from 'react-router-dom';
+import { Button } from '@chakra-ui/react';
 
 
 
@@ -108,7 +109,9 @@ const [file,setFile]=useState();
     <div className="manage-exams-container">
 { auth ?
 <>
-
+<div className='head'>
+  <h1>UPLOAD EXAM TIMETABLE</h1>
+</div>
       
       {exams.map((exam, index) => (
         <div key={index} className="form-container">
@@ -146,7 +149,9 @@ const [file,setFile]=useState();
       {/* Button to add another set of exam details */}
       {/* <button className="add-exam-btn" onClick={handleAddExam}>Add Another Exam</button> */}
       {/* Button to submit exams */}
-      <button className="submit-exam-btn" onClick={handleSubmit}>Submit Exams</button>
+      <Button  colorScheme="teal" _hover={{ bg: 'lightblue' }} mt={50} size="lg" onClick={handleSubmit}>Submit Exams
+  </Button>
+      
 
       </>
       :
