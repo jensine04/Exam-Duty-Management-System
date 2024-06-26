@@ -10,6 +10,7 @@ import AdminDashboard from "./components/admindashboard.js";
 import Sidebar from "./components/sidebar.js";
 import ExamDetails from "./components/examDetails.js";
 import DutyDetails from "./components/dutyDetails.js";
+import Upcoming from "./components/upcoming.js";
 
 
 import { useEffect, useState } from 'react';
@@ -44,6 +45,7 @@ function App() {
       <Route path="/sidebar" element={<Sidebar/>}/>
       <Route path="/examDetails" element={<ExamDetails/>}/>
       <Route path="/dutyDetails" element={<DutyDetails/>}/>
+      <Route path="/upcoming" element={<Upcoming/>}/>
       
     </Routes>
     </BrowserRouter>

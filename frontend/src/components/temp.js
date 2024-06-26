@@ -9,20 +9,6 @@ import {Link} from 'react-router-dom'
 
 const ViewDetails = () => {
   const [viewDetails, setViewDetails] = useState([]);
-  const [selectedRow, setSelectedRow] = useState(null);
-
-  
-  const handleAlgo= () => {
-    console.log('selected?',selectedRow);
-    axios.post('http://localhost:3001/algo',selectedRow)
-    .then( res => {
-      if (res.data.Status === 'Success'){
-        window.location.href = '/facultylogin';}
-      else {
-        alert("succesfully assigned")
-      }
-    }) .catch (err => console.log(err))
-  }
 
   useEffect(()=> { 
     axios.post('http://localhost:3001/admindutycontent')
@@ -40,11 +26,7 @@ const ViewDetails = () => {
      
     },[]);
 
-    useEffect(() => {
-      if (selectedRow) {
-        handleAlgo();
-      }
-    }, [selectedRow]);
+
  
   return (
     <div className="view-duty-details">
@@ -58,8 +40,6 @@ const ViewDetails = () => {
             <th>End Time</th>
             <th>Classroom</th>
             <th>Teacher Assigned</th>
-            <th>ASSIGN</th>
-            
           </tr>
         </thead>
         <tbody className="table__body">
@@ -77,9 +57,6 @@ const ViewDetails = () => {
               <td>{detail.etime}</td>
               <td>{detail.classroom}</td>
               <td>{detail.name ? detail.name : "N/A"}</td>
-              <Button  colorScheme="teal" _hover={{ bg: 'lightblue' }} m={30} size="lg" onClick={()=>{setSelectedRow(detail); }}>
-              {detail.name ? "REASSIGN" : "ASSIGN" }
-  </Button>
             </tr>
           ))}
         </tbody>

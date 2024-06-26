@@ -37,7 +37,7 @@ app.use(cookieParser());
 const db = mysql.createConnection({
     host: "localhost",
     user: 'root',
-    password: "Al2711eena!",
+    password: "123dubai",
     database: "edms",
 });
 db.connect((err) => {
@@ -72,6 +72,10 @@ app.get('/facultypage',verifyUser,(req, res) => {
     return res.json({Status: "Success",name: req.name, department: req.department, id:req.id})
 })
 app.get('/availability',verifyUser,(req, res) => {
+    return res.json({Status: "Success",name: req.name, department: req.department, id:req.id})
+})
+
+app.get('/upcoming',verifyUser,(req, res) => {
     return res.json({Status: "Success",name: req.name, department: req.department, id:req.id})
 })
 
@@ -143,6 +147,7 @@ app.post('/checkbox',(req,res)=>{
     const { selectedRows, id } = req.body;
     const promises=selectedRows.map(row => {
     const sql = "UPDATE examdetails SET assigned = 1, t_id = ? WHERE assigned = 0 AND date = ? AND stime = ? AND etime=? LIMIT 1";
+    const sql2 = "UPDATE teachers SET dutycount = dutycount + 1 WHERE teacher_id = ?";
     return new Promise((resolve, reject) => {
     console.log('row',row.stime,row.etime)
     db.query(sql, [id, row.date ,row.stime ,row.etime],(err,data)=>{
@@ -150,7 +155,20 @@ app.post('/checkbox',(req,res)=>{
         reject(err);
         //return res.json("Error updating row");
         else{
-            console.log('succes?',row)
+            console.log('1st succes?',row)
+
+            db.query(sql2, [id],(err2,data2)=>{
+                if(err2) 
+                reject(err2);
+                //return res.json("Error updating row");
+                else{
+                    console.log('2nd succes?',row)
+                    //return res.json(data);
+                    resolve(data2);
+                }
+            });
+
+
             //return res.json(data);
             resolve(data);
         }
@@ -160,6 +178,52 @@ app.post('/checkbox',(req,res)=>{
 })
 })
 
+app.post('/algo',(req,res)=>{
+    const selectedRow = req.body; // Access the selected row data from the request body
+    console.log('selected row',req.body)
+    // Extract required fields from selected row
+    const { date, stime, etime ,clas,nam} = selectedRow
+    const sql ="SELECT teacher_id FROM teachers WHERE dutycount = (SELECT MIN(dutycount) FROM teachers) LIMIT 1;";
+    const sql1 = "UPDATE examdetails SET assigned = 1, t_id = ? WHERE assigned = 0 AND date = ? AND stime = ? AND etime=? LIMIT 1";
+    const sql2 = "UPDATE teachers SET dutycount = dutycount + 1 WHERE teacher_id = ?";
+    db.query(sql,(err,result)=>{
+        if(err) return res.json({Message: "Error in server"});
+        else{
+            console.log('1st succes')
+            const teacherId = result[0].teacher_id;
+            console.log('teacherid obtained',teacherId)
+            db.query(sql1, [teacherId,date,stime,etime],(err1,data1)=>{
+                if(err1) {
+                console.error("Error updating examdetails:");
+                    return res.json({ Message: "Error updating examdetails" });
+                }
+                //return res.json("Error updating row");
+                else{
+                    console.log('2nd succes?',teacherId,date,stime,etime)
+                    db.query(sql2, [teacherId],(err3,data3)=>{
+                        if(err3) {
+                            console.error("Error updating examdetails:");
+                                return res.json({ Message: "Error updating examdetails" });
+                            }
+                        //xyz
+                        //return res.json("Error updating row");
+                        else{
+                            console.log('3rd succes?')
+                            //return res.json(data);
+                            //resolve(data3);
+                        }
+                    });
+                    //return res.json(data);
+                    //resolve(data1);
+                }
+            });
+            return res.json(result);
+        }
+        
+    })
+}
+
+)
 app.post('/uploadimg',upload.single('image'),(req,res)=>{
     //console.log('file req',req);
     //const { selectedRows, id } = req.body;
@@ -214,6 +278,30 @@ app.post('/examcontent',(req,res)=>{
         
     })
 })
+
+app.post('/admindutycontent',(req,res)=>{
+    const sql ="SELECT examdetails.date, examdetails.stime, examdetails.etime, examdetails.classroom, teachers.name FROM examdetails LEFT JOIN teachers ON teachers.teacher_id = examdetails.t_id ORDER BY examdetails.date, examdetails.stime;";
+    db.query(sql,(err,result)=>{
+        if(err) return res.json({Message: "Error in server"});
+        else{
+            return res.json(result);
+        }
+        
+    })
+})
+
+app.post('/facultydutycontent',(req,res)=>{
+    const sql ="SELECT * FROM examdetails WHERE t_id= ? ORDER BY date, stime";
+    db.query(sql,[req.body.id],(err,result)=>{
+        if(err) return res.json({Message: "Error in server"});
+        else{
+            return res.json(result);
+        }
+        
+    })
+})
+
+
 
 app.get('/logout',(req, res) => {
     res.clearCookie('token');

@@ -132,6 +132,7 @@ useEffect(()=> {
     </div>
   <a href="/facultypage" > TimeTable</a>
   <a href="/availability"class="active">Availability</a>
+  <a href="/upcoming">Upcoming Duty</a>
   </div>
 
   <Button  colorScheme="teal" _hover={{ bg: 'lightblue' }} mt={50} size="lg" onClick={handleLogout}>
